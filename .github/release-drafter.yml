@@ -1,0 +1,2 @@
+_extends: .github
+tag-template: node-parameter-folder-inherited-$NEXT_MINOR_VERSION

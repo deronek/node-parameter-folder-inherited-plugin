@@ -1,0 +1,21 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
+	xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form"
+	xmlns:i="jelly:fmt" xmlns:p="/lib/hudson/project">
+	
+	<f:entry title="${it.name}" description="${it.description}">
+		<div name="parameter" description="${it.description}">
+			<input type="hidden" name="name" value="${it.name}" />
+			<j:choose>
+				<select name="value" size="5">
+					<j:forEach var="aNode" items="${it.getAllowedNodesOrAll()}" varStatus="loop">
+						<j:choose>
+							<option value="${aNode}">${aNode}</option>
+						</j:choose>
+					</j:forEach>
+				</select>
+			</j:choose>
+		</div>
+	</f:entry>	
+	
+</j:jelly>

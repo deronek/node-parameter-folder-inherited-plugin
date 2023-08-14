@@ -1,0 +1,22 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
+         xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form"
+         xmlns:i="jelly:fmt" xmlns:p="/lib/hudson/project">
+    <f:section title="Node Property">
+    <f:entry name="allowedNodes" title="Allowed nodes" description="${%allowedNodes}">
+        <select name="allowedNodes" multiple="multiple" size="5">
+            <j:invokeStatic className="org.jvnet.jenkins.plugins.nodelabelparameter.NodeParameterDefinition" method="getSlaveNames" var="allNodes" />
+            <j:forEach var="aNode" items="${allNodes}" varStatus="loop">
+                <j:choose>
+                    <j:when test="${instance.allowedNodes.contains(aNode)}">
+                        <option value="${aNode}" selected="selected">${aNode}</option>
+                    </j:when>
+                    <j:otherwise>
+                        <option value="${aNode}">${aNode}</option>
+                    </j:otherwise>
+                </j:choose>
+            </j:forEach>
+        </select>
+    </f:entry>
+</f:section>
+</j:jelly>
